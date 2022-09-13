@@ -1,3 +1,6 @@
+
+
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -11,32 +14,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*ft_read_line(int fd, char *buf, char *mem)
-{
-	int		readline;
-	char	*temp_mem;
-
-	readline = 1;
-	while (readline != '\0')
-	{
-		readline = read(fd, buf, BUFFER_SIZE);
-		if (readline == -1)
-			return (0);
-		else if (readline == 0)
-			break ;
-		buf[readline] = '\0';
-		if (!mem)
-			mem = ft_strdup("");
-		temp_mem = mem;
-		mem = ft_strjoin(temp_mem, buf);
-		free(temp_mem);
-		temp_mem = NULL;
-		if (ft_strchr(buf, '\n'))
-			break ;
-	}
-	return (mem);
-}
 
 static char	*extract_line(char *line)
 {
@@ -53,7 +30,7 @@ static char	*extract_line(char *line)
 	{
 		free(mem);
 		mem = NULL;
-	}
+
 	line[count + 1] = '\0';
 	return (mem);
 }
